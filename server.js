@@ -8,14 +8,14 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));
+app.use(express.static('./Develop/public'));
 
 app.get('/', (req, res) =>
-  res.sendFile(path.join(__dirname, '/Develop/public/index.html'))
+  res.sendFile(path.join(__dirname, './Develop/public/index.html'))
 );
 
 app.get('/notes', (req, res) =>
-  res.sendFile(path.join(__dirname, '/Develop/public/notes.html'))
+  res.sendFile(path.join(__dirname, './Develop/public/notes.html'))
 );
 
 // Get Note
@@ -41,7 +41,7 @@ app.post('/api/notes', (req, res) => {
       id: Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1)
     };
 
-    fs.readFile('/Develop/db/db.json', 'utf8', (err, data) => {
+    fs.readFile('./Develop/db/db.json', 'utf8', (err, data) => {
       if (err) {
         console.error(err);
       } else {
