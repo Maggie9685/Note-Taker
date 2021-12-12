@@ -20,7 +20,7 @@ app.get('/notes', (req, res) =>
 
 // Get Note
 app.get('/api/notes', (req, res) => {
-  fs.readFile('./db/db.json', 'utf8', (err, data) => {
+  fs.readFile('./Develop/db/db.json', 'utf8', (err, data) => {
     if (err) {
       console.error(err);
     } else {
@@ -41,7 +41,7 @@ app.post('/api/notes', (req, res) => {
       id: Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1)
     };
 
-    fs.readFile('./db/db.json', 'utf8', (err, data) => {
+    fs.readFile('/Develop/db/db.json', 'utf8', (err, data) => {
       if (err) {
         console.error(err);
       } else {
@@ -50,7 +50,7 @@ app.post('/api/notes', (req, res) => {
         parsedNotes.push(newNotes);
 
         fs.writeFile(
-          './db/db.json',
+          './Develop/db/db.json',
           JSON.stringify(parsedNotes, null, 3),
           (writeErr) =>
             writeErr
@@ -73,7 +73,7 @@ app.post('/api/notes', (req, res) => {
 });
 
 app.delete('/api/notes/:id', (req, res) => {
-  fs.readFile('./db/db.json', 'utf8', (err, data) => {
+  fs.readFile('./Develop/db/db.json', 'utf8', (err, data) => {
     if (err) {
       console.error(err);
     } else {
@@ -83,7 +83,7 @@ app.delete('/api/notes/:id', (req, res) => {
       res.send(JSON.stringify(newNotes, null, 3));
       
       fs.writeFile(
-        './db/db.json',
+        './Develop/db/db.json',
         JSON.stringify(newNotes, null, 3),
         (writeErr) =>
           writeErr
